@@ -1011,7 +1011,7 @@ static INLINE void get_tilemaps(int bgnum, struct tilemap **tilemaps)
 }
 
 
-static int patch_enable(int in, int bgnum)
+static bool patch_enable(bool in, int bgnum)
 {
 	if (!titlef_kludge) return in;
 
@@ -1020,13 +1020,13 @@ static int patch_enable(int in, int bgnum)
 		case 0x7be0:
 		case 0x52a0:
 		case 0x2960:
-			return 0;
+			return false;
 
 		case 0x5be0:
-			return (bgnum%2 == 0) ? in : 0;
+			return (bgnum%2 == 0) ? in : false;
 
 		case 0x3be0:
-			return (bgnum%2 == 1) ? in : 0;
+			return (bgnum%2 == 1) ? in : false;
 
 		default: return in;
 	}
